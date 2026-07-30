@@ -23,7 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.prelim_handson_exam.ui.theme.*
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +35,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            MaterialTheme {
+            ProfileCardLabTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -64,11 +63,14 @@ fun ProfileScreen() {
             modifier = Modifier
                 .size(120.dp)
                 .clip(CircleShape)
+                .background(MaterialTheme.colorScheme.primary)
                 .border(
-                    3.dp,
+                    2.dp,
                     MaterialTheme.colorScheme.primary,
                     CircleShape
-                )
+                ),
+            contentAlignment = Alignment.Center
+
         ) {
             Image(
                 painter = painterResource(id = R.drawable.profile),
@@ -84,7 +86,7 @@ fun ProfileScreen() {
         Text(
             text = "Khail Sebastian Dacula",
             style = MaterialTheme.typography.headlineSmall,
-            color = NavyBlue
+            color = MaterialTheme.colorScheme.primary
         )
 
         // Subtitle
@@ -99,9 +101,11 @@ fun ProfileScreen() {
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
-                containerColor = DarkGray
+                containerColor = MaterialTheme.colorScheme.surface
             ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 6.dp
+            )
         ) {
 
             Column(
@@ -164,7 +168,7 @@ fun InfoRow(
         Icon(
             imageVector = icon,
             contentDescription = label,
-            tint = RoyalBlue
+            tint = MaterialTheme.colorScheme.secondary
         )
 
         Spacer(modifier = Modifier.width(16.dp))
@@ -176,13 +180,13 @@ fun InfoRow(
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelMedium,
-                color = RoyalBlue
+                color = MaterialTheme.colorScheme.primary
             )
 
             Text(
                 text = value,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.White
+                color = MaterialTheme.colorScheme.onSurface
             )
 
         }
@@ -197,7 +201,7 @@ fun InfoRow(
 )
 @Composable
 fun LightPreview() {
-    MaterialTheme {
+    ProfileCardLabTheme {
         ProfileScreen()
     }
 }
@@ -208,9 +212,7 @@ fun LightPreview() {
 )
 @Composable
 fun DarkPreview() {
-    MaterialTheme(
-        colorScheme = darkColorScheme()
-    ) {
+    ProfileCardLabTheme(darkTheme = true) {
         ProfileScreen()
     }
 }
