@@ -1,3 +1,7 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">prelim-handson-exam</string>
+=======
+    <string name="app_name">My Application</string>
+>>>>>>> 4cfd9e0bf63fd4f020a732b7668b06d1ff9a9288
 </resources>

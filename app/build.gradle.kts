@@ -4,11 +4,23 @@ plugins {
 }
 
 android {
+<<<<<<< HEAD
     namespace = "com.example.prelim_handson_exam"
     compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.prelim_handson_exam"
+=======
+    namespace = "com.example.myapplication"
+    compileSdk {
+        version = release(36) {
+            minorApiLevel = 1
+        }
+    }
+
+    defaultConfig {
+        applicationId = "com.example.myapplication"
+>>>>>>> 4cfd9e0bf63fd4f020a732b7668b06d1ff9a9288
         minSdk = 32
         targetSdk = 37
         versionCode = 1
@@ -37,8 +49,11 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
+<<<<<<< HEAD
     implementation(libs.androidx.compose.icons.core)
     implementation(libs.androidx.compose.icons.extended)
+=======
+>>>>>>> 4cfd9e0bf63fd4f020a732b7668b06d1ff9a9288
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
