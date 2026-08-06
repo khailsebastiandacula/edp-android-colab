@@ -6,14 +6,16 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -46,7 +48,6 @@ fun HomeScreen(
                 .fillMaxSize()
                 .background(OrangeGradient)
                 .padding(24.dp),
-
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -69,9 +70,7 @@ fun HomeScreen(
 
             OutlinedTextField(
                 value = name,
-                onValueChange = {
-                    name = it
-                },
+                onValueChange = { name = it },
                 label = {
                     Text("Enter your name")
                 }
@@ -86,7 +85,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(55.dp),
-                shape = RoundedCornerShape(15.dp)
+                shape = RoundedCornerShape(16.dp)
             ) {
 
                 Text(
@@ -102,60 +101,103 @@ fun HomeScreen(
 
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GreetingScreen(
-    userName: String
+    userName: String,
+    onBack: () -> Unit
 ) {
 
-    AnimatedVisibility(
-        visible = true,
-        enter = slideInVertically(
-            initialOffsetY = { it }
-        ) + fadeIn()
-    ) {
+    Scaffold(
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(OrangeGradient)
-                .padding(24.dp),
+        topBar = {
 
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            CenterAlignedTopAppBar(
+
+                title = {
+                    Text("Greeting")
+                },
+
+                navigationIcon = {
+
+                    IconButton(
+                        onClick = onBack
+                    ) {
+
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
+
+                    }
+
+                }
+
+            )
+
+        }
+
+    ) { paddingValues ->
+
+        AnimatedVisibility(
+            visible = true,
+            enter = slideInVertically(
+                initialOffsetY = { it }
+            ) + fadeIn()
         ) {
 
-            Text(
-                text = "👋",
-                fontSize = 70.sp
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(OrangeGradient)
+                    .padding(paddingValues)
+                    .padding(24.dp),
 
-            Spacer(modifier = Modifier.height(20.dp))
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
 
-            Text(
-                text = "Hello,",
-                fontSize = 26.sp,
-                color = Color.White
-            )
+                Text(
+                    text = "👋",
+                    fontSize = 70.sp
+                )
 
-            Text(
-                text = userName,
-                fontSize = 36.sp,
-                color = Color.White
-            )
+                Spacer(modifier = Modifier.height(20.dp))
 
-            Spacer(modifier = Modifier.height(20.dp))
+                Text(
+                    text = "Hello,",
+                    fontSize = 26.sp,
+                    color = Color.White
+                )
 
-            Text(
-                text = "Welcome to",
-                fontSize = 22.sp,
-                color = Color.White
-            )
+                Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
-                text = "Jetpack Navigation!",
-                fontSize = 26.sp,
-                color = Color.White
-            )
+                Text(
+                    text = userName,
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    text = "Welcome to",
+                    fontSize = 22.sp,
+                    color = Color.White
+                )
+
+                Text(
+                    text = "Jetpack Navigation!",
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+
+            }
 
         }
 

@@ -50,7 +50,10 @@ class MainActivity : ComponentActivity() {
                             backStackEntry.toRoute()
 
                         GreetingScreen(
-                            userName = greeting.userName
+                            userName = greeting.userName,
+                            onBack = {
+                                navController.popBackStack()
+                            }
                         )
 
                     }
