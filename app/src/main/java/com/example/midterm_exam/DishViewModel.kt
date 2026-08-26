@@ -11,8 +11,9 @@ class DishViewModel : ViewModel() {
 
     private val _dishes = MutableStateFlow(
         listOf(
-            Dish(id = 1, name = "Chicken Adobo"),
-            Dish(id = 2, name = "Sinigang na Baboy")
+            Dish(id = 1, name = "Fried Chicken"),
+            Dish(id = 2, name = "Spaghetti")
+
         )
     )
     val dishes: StateFlow<List<Dish>> = _dishes.asStateFlow()
